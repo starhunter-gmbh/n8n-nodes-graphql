@@ -34,7 +34,7 @@
       "dist/credentials/StarhunterApi.credentials.js"
     ],
     "nodes": [
-      "dist/nodes/StarhunterBirthdays/StarhunterBirthdays.node.js"
+      "dist/nodes/Starhunter/Starhunter.node.js"
     ]
   },
   "devDependencies": {
