@@ -7,6 +7,7 @@ import {
 } from 'n8n-workflow';
 
 import * as person from './actions/person';
+import * as projectCandidate from './actions/projectCandidate';
 import * as task from './actions/task';
 
 export class Starhunter implements INodeType {
@@ -38,6 +39,10 @@ export class Starhunter implements INodeType {
 						value: 'person',
 					},
 					{
+						name: 'Project Candidate',
+						value: 'projectCandidate',
+					},
+					{
 						name: 'Task',
 						value: 'task',
 					},
@@ -67,6 +72,28 @@ export class Starhunter implements INodeType {
 				default: 'getBirthdays',
 			},
 
+			// Project Candidate operations
+			{
+				displayName: 'Operation',
+				name: 'operation',
+				type: 'options',
+				noDataExpression: true,
+				displayOptions: {
+					show: {
+						resource: ['projectCandidate'],
+					},
+				},
+				options: [
+					{
+						name: 'Get By Status Change Date',
+						value: 'getByStatusChangeDate',
+						action: 'Get candidates by status change date',
+						description: 'Get project candidates whose status changed X days ago',
+					},
+				],
+				default: 'getByStatusChangeDate',
+			},
+
 			// Task operations
 			{
 				displayName: 'Operation',
@@ -91,6 +118,7 @@ export class Starhunter implements INodeType {
 
 			// Action-specific fields
 			...person.getBirthdays.description,
+			...projectCandidate.getByStatusChangeDate.description,
 			...task.create.description,
 		],
 	};
@@ -109,6 +137,14 @@ export class Starhunter implements INodeType {
 
 				if (resource === 'person' && operation === 'getBirthdays') {
 					const result = await person.getBirthdays.execute(this, i, baseUrl);
+					for (const item of result) {
+						returnData.push({
+							json: item,
+							pairedItem: { item: i },
+						});
+					}
+				} else if (resource === 'projectCandidate' && operation === 'getByStatusChangeDate') {
+					const result = await projectCandidate.getByStatusChangeDate.execute(this, i, baseUrl);
 					for (const item of result) {
 						returnData.push({
 							json: item,
