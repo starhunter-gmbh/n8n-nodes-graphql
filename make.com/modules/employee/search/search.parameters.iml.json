@@ -1,0 +1,28 @@
+[
+    {
+        "name": "employeeId",
+        "type": "text",
+        "label": "Employee ID",
+        "required": false,
+        "help": "Search by specific employee ID"
+    },
+    {
+        "name": "name",
+        "type": "text",
+        "label": "Name",
+        "required": false,
+        "help": "Search by employee name (partial match)"
+    },
+    {
+        "name": "limit",
+        "type": "uinteger",
+        "label": "Limit",
+        "default": 50
+    },
+    {
+        "name": "offset",
+        "type": "uinteger",
+        "label": "Offset",
+        "default": 0
+    }
+]

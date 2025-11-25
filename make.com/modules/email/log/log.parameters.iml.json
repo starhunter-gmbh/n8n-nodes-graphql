@@ -1,0 +1,31 @@
+[
+    {
+        "name": "from",
+        "type": "email",
+        "label": "From",
+        "required": true,
+        "help": "Email address of the sender"
+    },
+    {
+        "name": "to",
+        "type": "email",
+        "label": "To",
+        "required": true,
+        "help": "Email address of the recipient"
+    },
+    {
+        "name": "subject",
+        "type": "text",
+        "label": "Subject",
+        "required": true,
+        "help": "Subject line of the email"
+    },
+    {
+        "name": "body",
+        "type": "text",
+        "label": "Body",
+        "required": true,
+        "multiline": true,
+        "help": "Body content of the email"
+    }
+]

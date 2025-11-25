@@ -1,0 +1,7 @@
+[
+    {"name": "status", "type": "text", "label": "Status"},
+    {"name": "rejectionReason", "type": "text", "label": "Rejection Reason"},
+    {"name": "changeDate", "type": "date", "label": "Change Date"},
+    {"name": "personName", "type": "text", "label": "Person Name"},
+    {"name": "personEmail", "type": "email", "label": "Person Email"}
+]

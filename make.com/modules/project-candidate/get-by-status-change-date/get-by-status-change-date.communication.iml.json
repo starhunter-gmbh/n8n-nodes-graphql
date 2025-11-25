@@ -1,0 +1,21 @@
+{
+    "url": "/",
+    "method": "POST",
+    "body": {
+        "query": "query getStatuses($status: String) { projectCandidates(status: $status) { status rejectionReason changeDate person { name email } } }",
+        "variables": {
+            "status": "{{parameters.status}}"
+        }
+    },
+    "response": {
+        "iterate": "{{body.data.projectCandidates}}",
+        "condition": "{{formatDate(item.changeDate, 'YYYY-MM-DD') == formatDate(addDays(now, -parameters.daysAgo), 'YYYY-MM-DD')}}",
+        "output": {
+            "status": "{{item.status}}",
+            "rejectionReason": "{{item.rejectionReason}}",
+            "changeDate": "{{item.changeDate}}",
+            "personName": "{{item.person.name}}",
+            "personEmail": "{{item.person.email}}"
+        }
+    }
+}

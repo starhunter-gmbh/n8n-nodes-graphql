@@ -1,0 +1,21 @@
+{
+    "url": "/",
+    "method": "POST",
+    "body": {
+        "query": "mutation LogEmail($from: String!, $to: String!, $subject: String!, $body: String!) { logEmail(from: $from, to: $to, subject: $subject, body: $body) }",
+        "variables": {
+            "from": "{{parameters.from}}",
+            "to": "{{parameters.to}}",
+            "subject": "{{parameters.subject}}",
+            "body": "{{parameters.body}}"
+        }
+    },
+    "response": {
+        "output": {
+            "success": "{{body.data.logEmail}}",
+            "from": "{{parameters.from}}",
+            "to": "{{parameters.to}}",
+            "subject": "{{parameters.subject}}"
+        }
+    }
+}

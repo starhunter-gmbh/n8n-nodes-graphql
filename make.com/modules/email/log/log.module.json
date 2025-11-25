@@ -1,0 +1,7 @@
+{
+    "name": "logEmail",
+    "label": "Log an Email",
+    "description": "Log an email activity in Starhunter CRM",
+    "moduleType": "action",
+    "connection": "starhunter"
+}

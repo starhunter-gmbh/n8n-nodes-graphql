@@ -1,0 +1,35 @@
+[
+    {
+        "name": "candidateId",
+        "type": "text",
+        "label": "Candidate ID",
+        "required": false,
+        "help": "Search by specific candidate ID"
+    },
+    {
+        "name": "name",
+        "type": "text",
+        "label": "Name",
+        "required": false,
+        "help": "Search by candidate name (partial match)"
+    },
+    {
+        "name": "birthDate",
+        "type": "text",
+        "label": "Birth Date (MM-DD)",
+        "required": false,
+        "help": "Filter by birth date (format: MM-DD)"
+    },
+    {
+        "name": "limit",
+        "type": "uinteger",
+        "label": "Limit",
+        "default": 50
+    },
+    {
+        "name": "offset",
+        "type": "uinteger",
+        "label": "Offset",
+        "default": 0
+    }
+]

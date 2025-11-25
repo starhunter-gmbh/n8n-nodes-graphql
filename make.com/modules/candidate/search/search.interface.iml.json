@@ -1,0 +1,29 @@
+[
+    {"name": "id", "type": "text", "label": "ID"},
+    {"name": "name", "type": "text", "label": "Full Name"},
+    {"name": "firstName", "type": "text", "label": "First Name"},
+    {"name": "secondName", "type": "text", "label": "Last Name"},
+    {"name": "middleName", "type": "text", "label": "Middle Name"},
+    {"name": "academicTitle", "type": "text", "label": "Academic Title"},
+    {"name": "salutation", "type": "text", "label": "Salutation"},
+    {"name": "email", "type": "email", "label": "Email"},
+    {"name": "birthDate", "type": "text", "label": "Birth Date"},
+    {"name": "phone", "type": "text", "label": "Phone"},
+    {"name": "functions", "type": "text", "label": "Functions"},
+    {"name": "address", "type": "text", "label": "Address"},
+    {"name": "createdAt", "type": "date", "label": "Created At"},
+    {"name": "updatedAt", "type": "date", "label": "Updated At"},
+    {
+        "name": "contactHistory",
+        "type": "array",
+        "label": "Contact History",
+        "spec": {
+            "type": "collection",
+            "spec": [
+                {"name": "title", "type": "text", "label": "Title"},
+                {"name": "type", "type": "text", "label": "Type"},
+                {"name": "date", "type": "date", "label": "Date"}
+            ]
+        }
+    }
+]

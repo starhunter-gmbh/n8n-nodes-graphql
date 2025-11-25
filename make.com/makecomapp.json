@@ -1,0 +1,10 @@
+{
+    "name": "starhunter",
+    "label": "Starhunter CRM",
+    "description": "Interact with Starhunter CRM via GraphQL API",
+    "version": "1.0.0",
+    "theme": "#2563eb",
+    "language": "en",
+    "countries": [],
+    "audiences": ["private"]
+}

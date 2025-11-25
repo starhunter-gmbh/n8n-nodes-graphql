@@ -1,0 +1,17 @@
+[
+    {
+        "name": "baseUrl",
+        "type": "text",
+        "label": "Base URL",
+        "required": true,
+        "default": "https://release-current.starhunter.software",
+        "help": "The base URL of your Starhunter instance (without /Api/graphql)"
+    },
+    {
+        "name": "apiToken",
+        "type": "password",
+        "label": "Access Token",
+        "required": true,
+        "help": "Your Starhunter API access token"
+    }
+]

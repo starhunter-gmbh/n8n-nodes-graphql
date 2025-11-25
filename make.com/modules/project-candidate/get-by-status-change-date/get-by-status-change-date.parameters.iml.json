@@ -1,0 +1,17 @@
+[
+    {
+        "name": "status",
+        "type": "text",
+        "label": "Status",
+        "required": true,
+        "help": "The candidate status to filter by (e.g., Ident)"
+    },
+    {
+        "name": "daysAgo",
+        "type": "uinteger",
+        "label": "Days Ago",
+        "required": true,
+        "default": 7,
+        "help": "Number of days ago the status change should have occurred"
+    }
+]

@@ -1,0 +1,17 @@
+{
+    "url": "/",
+    "method": "POST",
+    "body": {
+        "query": "query SearchCandidates($candidateId: Id, $birthDate: BirthDate, $name: String, $limit: Int, $offset: Int) { candidate(candidateId: $candidateId, birthDate: $birthDate, name: $name, limit: $limit, offset: $offset) { id name firstName secondName middleName academicTitle salutation email birthDate phone functions address createdAt updatedAt contactHistory { title type date } } }",
+        "variables": {
+            "candidateId": "{{if(parameters.candidateId, parameters.candidateId, undefined)}}",
+            "name": "{{if(parameters.name, parameters.name, undefined)}}",
+            "birthDate": "{{if(parameters.birthDate, parameters.birthDate, undefined)}}",
+            "limit": "{{parameters.limit}}",
+            "offset": "{{parameters.offset}}"
+        }
+    },
+    "response": {
+        "output": "{{body.data.candidate}}"
+    }
+}

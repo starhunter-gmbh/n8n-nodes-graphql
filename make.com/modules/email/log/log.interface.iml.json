@@ -1,0 +1,6 @@
+[
+    {"name": "success", "type": "boolean", "label": "Success"},
+    {"name": "from", "type": "email", "label": "From"},
+    {"name": "to", "type": "email", "label": "To"},
+    {"name": "subject", "type": "text", "label": "Subject"}
+]

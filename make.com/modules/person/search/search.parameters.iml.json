@@ -1,0 +1,25 @@
+[
+    {
+        "name": "name",
+        "type": "text",
+        "label": "Name",
+        "required": false,
+        "help": "Search by person name (partial match)"
+    },
+    {
+        "name": "limit",
+        "type": "uinteger",
+        "label": "Limit",
+        "required": false,
+        "default": 50,
+        "help": "Max number of results to return (1-1000)"
+    },
+    {
+        "name": "offset",
+        "type": "uinteger",
+        "label": "Offset",
+        "required": false,
+        "default": 0,
+        "help": "Number of results to skip for pagination"
+    }
+]

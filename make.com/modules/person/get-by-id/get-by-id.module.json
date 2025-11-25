@@ -1,0 +1,7 @@
+{
+    "name": "getPersonById",
+    "label": "Get a Person by ID",
+    "description": "Retrieve a single person by their ID",
+    "moduleType": "action",
+    "connection": "starhunter"
+}

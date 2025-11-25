@@ -1,0 +1,7 @@
+[
+    {"name": "id", "type": "text", "label": "Task ID"},
+    {"name": "title", "type": "text", "label": "Title"},
+    {"name": "description", "type": "text", "label": "Description"},
+    {"name": "deadline", "type": "date", "label": "Deadline"},
+    {"name": "assignee", "type": "text", "label": "Assignee ID"}
+]

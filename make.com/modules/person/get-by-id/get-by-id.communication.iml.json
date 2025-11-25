@@ -1,0 +1,13 @@
+{
+    "url": "/",
+    "method": "POST",
+    "body": {
+        "query": "query GetPerson($id: Id!) { person(id: $id) { id name firstName secondName middleName academicTitle salutation email birthDate phone functions address createdAt updatedAt } }",
+        "variables": {
+            "id": "{{parameters.personId}}"
+        }
+    },
+    "response": {
+        "output": "{{body.data.person}}"
+    }
+}

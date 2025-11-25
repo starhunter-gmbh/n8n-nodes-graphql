@@ -1,0 +1,7 @@
+{
+    "name": "createTask",
+    "label": "Create a Task",
+    "description": "Create a new task with optional deadline, assignee, and target",
+    "moduleType": "action",
+    "connection": "starhunter"
+}

@@ -1,0 +1,7 @@
+{
+    "name": "searchEmployees",
+    "label": "Search Employees",
+    "description": "Search employees by ID or name",
+    "moduleType": "action",
+    "connection": "starhunter"
+}

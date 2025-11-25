@@ -1,0 +1,7 @@
+{
+    "name": "getProjectCandidatesByStatusChange",
+    "label": "Get Project Candidates by Status Change",
+    "description": "Filter project candidates by status and find those whose status changed X days ago",
+    "moduleType": "action",
+    "connection": "starhunter"
+}
