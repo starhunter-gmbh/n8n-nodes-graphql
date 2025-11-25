@@ -4,8 +4,13 @@
   "description": "Birthday Workflows",
   "license": "MIT",
   "homepage": "",
-  "keywords": ["n8n-community-node-package"],
-  "author": { "name": "Christopher Schreiner", "email": "cs@elunic.com" },
+  "keywords": [
+    "n8n-community-node-package"
+  ],
+  "author": {
+    "name": "Christopher Schreiner",
+    "email": "cs@elunic.com"
+  },
   "repository": {
     "type": "git",
     "url": "https://gitlab.elunic.software/starhunter/automation-nodes"
@@ -19,19 +24,28 @@
     "release": "n8n-node release",
     "prepublishOnly": "n8n-node prerelease"
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "n8n": {
     "n8nNodesApiVersion": 1,
     "strict": true,
-    "credentials": ["dist/credentials/StarhunterBirthdaysApi.credentials.js"],
-    "nodes": ["dist/nodes/StarhunterBirthdays/StarhunterBirthdays.node.js"]
+    "credentials": [
+      "dist/credentials/StarhunterBirthdaysApi.credentials.js"
+    ],
+    "nodes": [
+      "dist/nodes/StarhunterBirthdays/StarhunterBirthdays.node.js"
+    ]
   },
   "devDependencies": {
     "@n8n/node-cli": "*",
     "eslint": "9.32.0",
+    "n8n-workflow": "*",
     "prettier": "3.6.2",
     "release-it": "^19.0.4",
     "typescript": "5.9.2"
   },
-  "peerDependencies": { "n8n-workflow": "*" }
+  "peerDependencies": {
+    "n8n-workflow": "*"
+  }
 }
