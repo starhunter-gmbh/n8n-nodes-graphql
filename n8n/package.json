@@ -1,7 +1,7 @@
 {
-  "name": "@starhunter/n8n-nodes-birthdays",
+  "name": "@starhunter/n8n-nodes-graphql",
   "version": "0.1.0",
-  "description": "Birthday Workflows",
+  "description": "Starhunter Workflows",
   "license": "MIT",
   "homepage": "",
   "keywords": [
@@ -31,7 +31,7 @@
     "n8nNodesApiVersion": 1,
     "strict": true,
     "credentials": [
-      "dist/credentials/StarhunterBirthdaysApi.credentials.js"
+      "dist/credentials/StarhunterApi.credentials.js"
     ],
     "nodes": [
       "dist/nodes/StarhunterBirthdays/StarhunterBirthdays.node.js"

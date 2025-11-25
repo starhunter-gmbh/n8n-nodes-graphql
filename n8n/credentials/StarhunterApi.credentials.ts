@@ -5,23 +5,24 @@ import type {
 	INodeProperties,
 } from 'n8n-workflow';
 
-export class StarhunterBirthdaysApi implements ICredentialType {
-	name = 'starhunterBirthdaysApi';
+export class StarhunterApi implements ICredentialType {
+	name = 'starhunterApi';
 
 	displayName = 'Starhunter API';
 
 	documentationUrl = 'https://docs.starhunter.software/api';
 
-	icon = { light: 'file:starhunterBirthdays.svg', dark: 'file:starhunterBirthdays.dark.svg' } as const;
+	icon = 'file:starhunter.svg' as const;
 
 	properties: INodeProperties[] = [
 		{
 			displayName: 'Base URL',
 			name: 'baseUrl',
 			type: 'string',
-			default: 'https://release-current.starhunter.software/Api/graphql',
+			default: 'https://release-current.starhunter.software',
 			required: true,
-			description: 'The GraphQL endpoint URL of your Starhunter instance',
+			placeholder: 'https://your-instance.starhunter.software',
+			description: 'The base URL of your Starhunter instance (without /Api/graphql)',
 		},
 		{
 			displayName: 'Access Token',
@@ -47,7 +48,7 @@ export class StarhunterBirthdaysApi implements ICredentialType {
 		request: {
 			method: 'POST',
 			baseURL: '={{$credentials.baseUrl}}',
-			url: '',
+			url: '/Api/graphql',
 			body: {
 				query: '{ __typename }',
 			},
