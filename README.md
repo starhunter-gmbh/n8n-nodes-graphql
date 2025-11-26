@@ -1,8 +1,8 @@
 # @starhunter/n8n-nodes-graphql
 
-This is an n8n community node that integrates with [Starhunter CRM](https://starhunter.com) in your n8n workflows.
+This is an n8n community node that integrates with [Starhunter](https://starhunter.com) in your n8n workflows.
 
-Starhunter is a customer relationship management (CRM) system designed for recruiting and talent management. This node allows you to automate interactions with persons, candidates, employees, emails, project candidates, and tasks through the Starhunter GraphQL API.
+Starhunter is a customer relationship management (CRM) system designed for recruiting and talent management. This node allows you to automate interactions with persons, candidates, employees, emails, project candidates, and tasks in Starhunter.
 
 [n8n](https://n8n.io/) is a [fair-code licensed](https://docs.n8n.io/sustainable-use-license/) workflow automation platform.
 
@@ -37,7 +37,7 @@ Follow the [installation guide](https://docs.n8n.io/integrations/community-nodes
 
 ### Email
 
-- **Log**: Log an email activity in Starhunter CRM (records sender, recipient, subject, and body)
+- **Log**: Log an email activity in Starhunter (records sender, recipient, subject, and body)
 
 ### Project Candidate
 
@@ -53,7 +53,7 @@ To use this node, you need to authenticate with your Starhunter instance using a
 
 ### Prerequisites
 
-1. Access to a Starhunter CRM instance
+1. Access to a Starhunter instance
 2. A valid API access token from your Starhunter account settings
 
 ### Setting up credentials in n8n
@@ -61,7 +61,7 @@ To use this node, you need to authenticate with your Starhunter instance using a
 1. In n8n, go to **Credentials** and click **Add Credential**
 2. Search for **Starhunter API**
 3. Enter the following:
-   - **Base URL**: The base URL of your Starhunter instance (e.g., `https://your-company.starhunter.software`). Do not include `/Api/graphql` - the node adds this automatically.
+   - **Base URL**: The base URL of your Starhunter instance (e.g., `https://your-company.starhunter.software`).
    - **Access Token**: Your Starhunter API access token
 4. Click **Save** to test the connection
 
@@ -90,7 +90,7 @@ Create a workflow that runs daily to fetch persons with birthdays today and send
 
 ### Example: Log emails to CRM
 
-Automatically log emails sent through your workflow back to Starhunter CRM for tracking purposes.
+Automatically log emails sent through your workflow back to Starhunter for tracking purposes.
 
 1. After sending an email in your workflow, add the **Starhunter** node
 2. Configure with:
@@ -112,7 +112,7 @@ Monitor candidates who changed status a specific number of days ago for follow-u
 ## Resources
 
 - [n8n community nodes documentation](https://docs.n8n.io/integrations/#community-nodes)
-- [Starhunter CRM](https://starhunter.software)
+- [Starhunter](https://starhunter.software)
 
 ## Version history
 

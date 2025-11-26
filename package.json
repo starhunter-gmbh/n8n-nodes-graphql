@@ -3,13 +3,16 @@
   "version": "0.1.3",
   "description": "Starhunter Workflows",
   "license": "MIT",
-  "homepage": "",
+  "homepage": "https://starhunter.com",
   "keywords": [
-    "n8n-community-node-package"
+    "n8n-community-node-package",
+    "n8n-nodes",
+    "n8n",
+    "starhunter"
   ],
   "author": {
-    "name": "Christopher Schreiner",
-    "email": "cs@elunic.com"
+    "name": "Starhunter GmbH",
+    "email": "dev@starhunter.com"
   },
   "repository": {
     "type": "git",

@@ -10,7 +10,7 @@ export class StarhunterApi implements ICredentialType {
 
 	displayName = 'Starhunter API';
 
-	documentationUrl = 'https://docs.starhunter.software/api';
+	documentationUrl = 'https://your-instance.starhunter.software/Api/docs';
 
 	icon = 'file:starhunter.svg' as const;
 
@@ -19,10 +19,10 @@ export class StarhunterApi implements ICredentialType {
 			displayName: 'Base URL',
 			name: 'baseUrl',
 			type: 'string',
-			default: 'https://release-current.starhunter.software',
+			default: 'https://your-instance.starhunter.software',
 			required: true,
 			placeholder: 'https://your-instance.starhunter.software',
-			description: 'The base URL of your Starhunter instance (without /Api/graphql)',
+			description: 'The base URL of your Starhunter instance',
 		},
 		{
 			displayName: 'Access Token',
