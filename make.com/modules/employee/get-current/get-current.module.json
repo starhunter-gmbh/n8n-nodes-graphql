@@ -1,7 +1,0 @@
-{
-    "name": "getCurrentUser",
-    "label": "Get Current User",
-    "description": "Get the employee record for the currently authenticated user",
-    "moduleType": "action",
-    "connection": "starhunter"
-}

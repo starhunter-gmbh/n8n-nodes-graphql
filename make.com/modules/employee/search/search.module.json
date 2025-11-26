@@ -1,7 +1,0 @@
-{
-    "name": "searchEmployees",
-    "label": "Search Employees",
-    "description": "Search employees by ID or name",
-    "moduleType": "search",
-    "connection": "starhunter"
-}

@@ -1,7 +1,0 @@
-{
-    "name": "searchPersons",
-    "label": "Search Persons",
-    "description": "Search for persons by name with pagination support",
-    "moduleType": "search",
-    "connection": "starhunter"
-}

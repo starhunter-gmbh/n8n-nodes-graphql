@@ -1,7 +1,0 @@
-{
-    "name": "searchCandidates",
-    "label": "Search Candidates",
-    "description": "Search candidates by ID, name, or birth date with contact history",
-    "moduleType": "search",
-    "connection": "starhunter"
-}

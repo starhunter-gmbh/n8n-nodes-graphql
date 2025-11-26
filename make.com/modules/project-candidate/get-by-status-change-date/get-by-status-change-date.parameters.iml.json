@@ -1,9 +1,0 @@
-[
-    {
-        "name": "status",
-        "type": "text",
-        "label": "Status",
-        "required": true,
-        "help": "The candidate status to filter by (e.g., Ident)"
-    }
-]
