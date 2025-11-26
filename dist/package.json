@@ -1,6 +1,6 @@
 {
     "name": "@starhunter/n8n-nodes-graphql",
-    "version": "0.1.4",
+    "version": "0.1.5",
     "description": "Starhunter Workflows",
     "license": "MIT",
     "homepage": "https://starhunter.com",
@@ -16,7 +16,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://gitlab.elunic.software/starhunter-public/n8n-nodes-graphql.git"
+        "url": "https://github.com/starhunter-gmbh/n8n-nodes-graphql.git"
     },
     "scripts": {
         "build": "n8n-node build",
