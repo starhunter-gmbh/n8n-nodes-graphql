@@ -1,10 +1,183 @@
 {
-    "name": "starhunter",
-    "label": "Starhunter CRM",
-    "description": "Interact with Starhunter CRM via GraphQL API",
-    "version": "1.0.0",
-    "theme": "#2563eb",
-    "language": "en",
-    "countries": [],
-    "audiences": ["private"]
+    "fileVersion": 1,
+    "generalCodeFiles": {
+        "base": "base/base.iml.json",
+        "common": null,
+        "groups": null,
+        "readme": "README.md"
+    },
+    "components": {
+        "connection": {
+            "starhunter": {
+                "label": "Starhunter",
+                "connectionType": "basic",
+                "codeFiles": {
+                    "params": "connections/starhunter/connection.parameters.iml.json",
+                    "communication": "connections/starhunter/connection.communication.iml.json"
+                }
+            }
+        },
+        "module": {
+            "getPersonById": {
+                "label": "Get a Person by ID",
+                "description": "Retrieve a single person by their ID",
+                "moduleType": "action",
+                "connection": "starhunter",
+                "codeFiles": {
+                    "params": "modules/person/get-by-id/get-by-id.parameters.iml.json",
+                    "communication": "modules/person/get-by-id/get-by-id.communication.iml.json",
+                    "interface": "modules/person/get-by-id/get-by-id.interface.iml.json"
+                }
+            },
+            "searchPersons": {
+                "label": "Search Persons",
+                "description": "Search for persons by name with pagination support",
+                "moduleType": "action",
+                "connection": "starhunter",
+                "codeFiles": {
+                    "params": "modules/person/search/search.parameters.iml.json",
+                    "communication": "modules/person/search/search.communication.iml.json",
+                    "interface": "modules/person/search/search.interface.iml.json"
+                }
+            },
+            "getBirthdays": {
+                "label": "Get Birthdays",
+                "description": "Find persons whose birthday falls on a specific date",
+                "moduleType": "action",
+                "connection": "starhunter",
+                "codeFiles": {
+                    "params": "modules/person/get-birthdays/get-birthdays.parameters.iml.json",
+                    "communication": "modules/person/get-birthdays/get-birthdays.communication.iml.json",
+                    "interface": "modules/person/get-birthdays/get-birthdays.interface.iml.json"
+                }
+            },
+            "searchCandidates": {
+                "label": "Search Candidates",
+                "description": "Search candidates by ID, name, or birth date with contact history",
+                "moduleType": "action",
+                "connection": "starhunter",
+                "codeFiles": {
+                    "params": "modules/candidate/search/search.parameters.iml.json",
+                    "communication": "modules/candidate/search/search.communication.iml.json",
+                    "interface": "modules/candidate/search/search.interface.iml.json"
+                }
+            },
+            "getCurrentUser": {
+                "label": "Get Current User",
+                "description": "Get the employee record for the currently authenticated user",
+                "moduleType": "action",
+                "connection": "starhunter",
+                "codeFiles": {
+                    "params": "modules/employee/get-current/get-current.parameters.iml.json",
+                    "communication": "modules/employee/get-current/get-current.communication.iml.json",
+                    "interface": "modules/employee/get-current/get-current.interface.iml.json"
+                }
+            },
+            "searchEmployees": {
+                "label": "Search Employees",
+                "description": "Search employees by ID or name",
+                "moduleType": "action",
+                "connection": "starhunter",
+                "codeFiles": {
+                    "params": "modules/employee/search/search.parameters.iml.json",
+                    "communication": "modules/employee/search/search.communication.iml.json",
+                    "interface": "modules/employee/search/search.interface.iml.json"
+                }
+            },
+            "logEmail": {
+                "label": "Log an Email",
+                "description": "Log an email activity in Starhunter CRM",
+                "moduleType": "action",
+                "connection": "starhunter",
+                "codeFiles": {
+                    "params": "modules/email/log/log.parameters.iml.json",
+                    "communication": "modules/email/log/log.communication.iml.json",
+                    "interface": "modules/email/log/log.interface.iml.json"
+                }
+            },
+            "getProjectCandidatesByStatusChange": {
+                "label": "Get Project Candidates by Status Change",
+                "description": "Filter project candidates by status and find those whose status changed X days ago",
+                "moduleType": "action",
+                "connection": "starhunter",
+                "codeFiles": {
+                    "params": "modules/project-candidate/get-by-status-change-date/get-by-status-change-date.parameters.iml.json",
+                    "communication": "modules/project-candidate/get-by-status-change-date/get-by-status-change-date.communication.iml.json",
+                    "interface": "modules/project-candidate/get-by-status-change-date/get-by-status-change-date.interface.iml.json"
+                }
+            },
+            "createTask": {
+                "label": "Create a Task",
+                "description": "Create a new task with optional deadline, assignee, and target",
+                "moduleType": "action",
+                "connection": "starhunter",
+                "codeFiles": {
+                    "params": "modules/task/create/create.parameters.iml.json",
+                    "communication": "modules/task/create/create.communication.iml.json",
+                    "interface": "modules/task/create/create.interface.iml.json"
+                }
+            }
+        },
+        "webhook": {},
+        "rpc": {},
+        "function": {}
+    },
+    "origins": [
+        {
+            "label": "Production",
+            "baseUrl": "https://eu1.make.com/api",
+            "appId": "starhunter-o52xay",
+            "appVersion": 1,
+            "apikeyFile": ".secrets/apikey",
+            "idMapping": {
+                "connection": [
+                    {
+                        "local": "starhunter",
+                        "remote": "starhunter-o52xay"
+                    }
+                ],
+                "module": [
+                    {
+                        "local": "getPersonById",
+                        "remote": "searchCandidates"
+                    },
+                    {
+                        "local": "searchPersons",
+                        "remote": "searchPersons"
+                    },
+                    {
+                        "local": "getBirthdays",
+                        "remote": "getBirthdays"
+                    },
+                    {
+                        "local": "searchCandidates",
+                        "remote": null
+                    },
+                    {
+                        "local": "getCurrentUser",
+                        "remote": null
+                    },
+                    {
+                        "local": "searchEmployees",
+                        "remote": null
+                    },
+                    {
+                        "local": "logEmail",
+                        "remote": null
+                    },
+                    {
+                        "local": "getProjectCandidatesByStatusChange",
+                        "remote": null
+                    },
+                    {
+                        "local": "createTask",
+                        "remote": null
+                    }
+                ],
+                "function": [],
+                "rpc": [],
+                "webhook": []
+            }
+        }
+    ]
 }
