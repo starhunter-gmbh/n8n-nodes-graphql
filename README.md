@@ -1,6 +1,6 @@
 # @starhunter/n8n-nodes-graphql
 
-This is an n8n community node that integrates with [Starhunter CRM](https://starhunter.software) in your n8n workflows.
+This is an n8n community node that integrates with [Starhunter CRM](https://starhunter.com) in your n8n workflows.
 
 Starhunter is a customer relationship management (CRM) system designed for recruiting and talent management. This node allows you to automate interactions with persons, candidates, employees, emails, project candidates, and tasks through the Starhunter GraphQL API.
 
