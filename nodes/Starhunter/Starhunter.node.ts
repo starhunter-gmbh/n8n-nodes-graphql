@@ -21,7 +21,7 @@ export class Starhunter implements INodeType {
 		group: ['transform'],
 		version: 1,
 		subtitle: '={{$parameter["operation"] + ": " + $parameter["resource"]}}',
-		description: 'Interact with Starhunter CRM',
+		description: 'Interact with Starhunter',
 		defaults: {
 			name: 'Starhunter',
 		},

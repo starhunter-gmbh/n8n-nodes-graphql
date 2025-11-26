@@ -7,11 +7,8 @@ import type {
 
 export class StarhunterApi implements ICredentialType {
 	name = 'starhunterApi';
-
 	displayName = 'Starhunter API';
-
 	documentationUrl = 'https://your-instance.starhunter.software/Api/docs';
-
 	icon = 'file:starhunter.svg' as const;
 
 	properties: INodeProperties[] = [
