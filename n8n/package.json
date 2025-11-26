@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://gitlab.elunic.software/starhunter/automation-nodes"
+    "url": "https://gitlab.elunic.software/starhunter-public/n8n-nodes-graphql.git"
   },
   "scripts": {
     "build": "n8n-node build",
