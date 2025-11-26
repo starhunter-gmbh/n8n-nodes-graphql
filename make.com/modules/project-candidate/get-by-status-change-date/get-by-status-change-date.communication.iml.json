@@ -9,7 +9,6 @@
     },
     "response": {
         "iterate": "{{body.data.projectCandidates}}",
-        "condition": "{{formatDate(item.changeDate, 'YYYY-MM-DD') == formatDate(addDays(now, -parameters.daysAgo), 'YYYY-MM-DD')}}",
         "output": {
             "status": "{{item.status}}",
             "rejectionReason": "{{item.rejectionReason}}",

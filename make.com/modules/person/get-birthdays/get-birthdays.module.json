@@ -2,6 +2,6 @@
     "name": "getBirthdays",
     "label": "Get Birthdays",
     "description": "Find persons whose birthday falls on a specific date",
-    "moduleType": "action",
+    "moduleType": "search",
     "connection": "starhunter"
 }

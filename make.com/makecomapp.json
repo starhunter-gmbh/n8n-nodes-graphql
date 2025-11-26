@@ -24,7 +24,7 @@
                 "moduleType": "action",
                 "connection": "starhunter",
                 "codeFiles": {
-                    "params": "modules/person/get-by-id/get-by-id.parameters.iml.json",
+                    "mappableParams": "modules/person/get-by-id/get-by-id.parameters.iml.json",
                     "communication": "modules/person/get-by-id/get-by-id.communication.iml.json",
                     "interface": "modules/person/get-by-id/get-by-id.interface.iml.json"
                 }
@@ -32,10 +32,10 @@
             "searchPersons": {
                 "label": "Search Persons",
                 "description": "Search for persons by name with pagination support",
-                "moduleType": "action",
+                "moduleType": "search",
                 "connection": "starhunter",
                 "codeFiles": {
-                    "params": "modules/person/search/search.parameters.iml.json",
+                    "mappableParams": "modules/person/search/search.parameters.iml.json",
                     "communication": "modules/person/search/search.communication.iml.json",
                     "interface": "modules/person/search/search.interface.iml.json"
                 }
@@ -43,10 +43,10 @@
             "getBirthdays": {
                 "label": "Get Birthdays",
                 "description": "Find persons whose birthday falls on a specific date",
-                "moduleType": "action",
+                "moduleType": "search",
                 "connection": "starhunter",
                 "codeFiles": {
-                    "params": "modules/person/get-birthdays/get-birthdays.parameters.iml.json",
+                    "mappableParams": "modules/person/get-birthdays/get-birthdays.parameters.iml.json",
                     "communication": "modules/person/get-birthdays/get-birthdays.communication.iml.json",
                     "interface": "modules/person/get-birthdays/get-birthdays.interface.iml.json"
                 }
@@ -54,10 +54,10 @@
             "searchCandidates": {
                 "label": "Search Candidates",
                 "description": "Search candidates by ID, name, or birth date with contact history",
-                "moduleType": "action",
+                "moduleType": "search",
                 "connection": "starhunter",
                 "codeFiles": {
-                    "params": "modules/candidate/search/search.parameters.iml.json",
+                    "mappableParams": "modules/candidate/search/search.parameters.iml.json",
                     "communication": "modules/candidate/search/search.communication.iml.json",
                     "interface": "modules/candidate/search/search.interface.iml.json"
                 }
@@ -68,7 +68,7 @@
                 "moduleType": "action",
                 "connection": "starhunter",
                 "codeFiles": {
-                    "params": "modules/employee/get-current/get-current.parameters.iml.json",
+                    "mappableParams": "modules/employee/get-current/get-current.parameters.iml.json",
                     "communication": "modules/employee/get-current/get-current.communication.iml.json",
                     "interface": "modules/employee/get-current/get-current.interface.iml.json"
                 }
@@ -76,10 +76,10 @@
             "searchEmployees": {
                 "label": "Search Employees",
                 "description": "Search employees by ID or name",
-                "moduleType": "action",
+                "moduleType": "search",
                 "connection": "starhunter",
                 "codeFiles": {
-                    "params": "modules/employee/search/search.parameters.iml.json",
+                    "mappableParams": "modules/employee/search/search.parameters.iml.json",
                     "communication": "modules/employee/search/search.communication.iml.json",
                     "interface": "modules/employee/search/search.interface.iml.json"
                 }
@@ -90,7 +90,7 @@
                 "moduleType": "action",
                 "connection": "starhunter",
                 "codeFiles": {
-                    "params": "modules/email/log/log.parameters.iml.json",
+                    "mappableParams": "modules/email/log/log.parameters.iml.json",
                     "communication": "modules/email/log/log.communication.iml.json",
                     "interface": "modules/email/log/log.interface.iml.json"
                 }
@@ -98,10 +98,10 @@
             "getProjectCandidatesByStatusChange": {
                 "label": "Get Project Candidates by Status Change",
                 "description": "Filter project candidates by status and find those whose status changed X days ago",
-                "moduleType": "action",
+                "moduleType": "search",
                 "connection": "starhunter",
                 "codeFiles": {
-                    "params": "modules/project-candidate/get-by-status-change-date/get-by-status-change-date.parameters.iml.json",
+                    "mappableParams": "modules/project-candidate/get-by-status-change-date/get-by-status-change-date.parameters.iml.json",
                     "communication": "modules/project-candidate/get-by-status-change-date/get-by-status-change-date.communication.iml.json",
                     "interface": "modules/project-candidate/get-by-status-change-date/get-by-status-change-date.interface.iml.json"
                 }
@@ -112,7 +112,7 @@
                 "moduleType": "action",
                 "connection": "starhunter",
                 "codeFiles": {
-                    "params": "modules/task/create/create.parameters.iml.json",
+                    "mappableParams": "modules/task/create/create.parameters.iml.json",
                     "communication": "modules/task/create/create.communication.iml.json",
                     "interface": "modules/task/create/create.interface.iml.json"
                 }
@@ -139,7 +139,7 @@
                 "module": [
                     {
                         "local": "getPersonById",
-                        "remote": "searchCandidates"
+                        "remote": "getPersonById"
                     },
                     {
                         "local": "searchPersons",
@@ -151,27 +151,27 @@
                     },
                     {
                         "local": "searchCandidates",
-                        "remote": null
+                        "remote": "searchCandidates"
                     },
                     {
                         "local": "getCurrentUser",
-                        "remote": null
+                        "remote": "getCurrentUser"
                     },
                     {
                         "local": "searchEmployees",
-                        "remote": null
+                        "remote": "searchEmployees"
                     },
                     {
                         "local": "logEmail",
-                        "remote": null
+                        "remote": "logEmail"
                     },
                     {
                         "local": "getProjectCandidatesByStatusChange",
-                        "remote": null
+                        "remote": "getProjectCandidatesByStatusChange"
                     },
                     {
                         "local": "createTask",
-                        "remote": null
+                        "remote": "createTask"
                     }
                 ],
                 "function": [],
