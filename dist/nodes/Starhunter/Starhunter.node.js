@@ -39,6 +39,7 @@ const candidate = __importStar(require("./actions/candidate"));
 const email = __importStar(require("./actions/email"));
 const employee = __importStar(require("./actions/employee"));
 const person = __importStar(require("./actions/person"));
+const project = __importStar(require("./actions/project"));
 const projectCandidate = __importStar(require("./actions/projectCandidate"));
 const task = __importStar(require("./actions/task"));
 class Starhunter {
@@ -80,6 +81,10 @@ class Starhunter {
                         {
                             name: 'Person',
                             value: 'person',
+                        },
+                        {
+                            name: 'Project',
+                            value: 'project',
                         },
                         {
                             name: 'Project Candidate',
@@ -202,13 +207,25 @@ class Starhunter {
                     },
                     options: [
                         {
+                            name: 'Add to Project',
+                            value: 'add',
+                            action: 'Add candidate to project',
+                            description: 'Add a candidate to a project with optional status',
+                        },
+                        {
                             name: 'Get By Status Change Date',
                             value: 'getByStatusChangeDate',
                             action: 'Get candidates by status change date',
                             description: 'Get project candidates whose status changed X days ago',
                         },
+                        {
+                            name: 'Update Status',
+                            value: 'updateStatus',
+                            action: 'Update presentation status',
+                            description: 'Update the status of a presentation with optional comment',
+                        },
                     ],
-                    default: 'getByStatusChangeDate',
+                    default: 'add',
                 },
                 {
                     displayName: 'Operation',
@@ -230,6 +247,26 @@ class Starhunter {
                     ],
                     default: 'create',
                 },
+                {
+                    displayName: 'Operation',
+                    name: 'operation',
+                    type: 'options',
+                    noDataExpression: true,
+                    displayOptions: {
+                        show: {
+                            resource: ['project'],
+                        },
+                    },
+                    options: [
+                        {
+                            name: 'Search',
+                            value: 'search',
+                            action: 'Search projects',
+                            description: 'Search for projects by status',
+                        },
+                    ],
+                    default: 'search',
+                },
                 ...candidate.search.description,
                 ...email.log.description,
                 ...employee.getCurrent.description,
@@ -237,7 +274,10 @@ class Starhunter {
                 ...person.getBirthdays.description,
                 ...person.getById.description,
                 ...person.search.description,
+                ...project.search.description,
+                ...projectCandidate.add.description,
                 ...projectCandidate.getByStatusChangeDate.description,
+                ...projectCandidate.updateStatus.description,
                 ...task.create.description,
             ],
         };
@@ -323,6 +363,33 @@ class Starhunter {
                 }
                 else if (resource === 'task' && operation === 'create') {
                     const result = await task.create.execute(this, i, baseUrl);
+                    if (result) {
+                        returnData.push({
+                            json: result,
+                            pairedItem: { item: i },
+                        });
+                    }
+                }
+                else if (resource === 'project' && operation === 'search') {
+                    const result = await project.search.execute(this, i, baseUrl);
+                    for (const item of result) {
+                        returnData.push({
+                            json: item,
+                            pairedItem: { item: i },
+                        });
+                    }
+                }
+                else if (resource === 'projectCandidate' && operation === 'add') {
+                    const result = await projectCandidate.add.execute(this, i, baseUrl);
+                    if (result) {
+                        returnData.push({
+                            json: result,
+                            pairedItem: { item: i },
+                        });
+                    }
+                }
+                else if (resource === 'projectCandidate' && operation === 'updateStatus') {
+                    const result = await projectCandidate.updateStatus.execute(this, i, baseUrl);
                     if (result) {
                         returnData.push({
                             json: result,
