@@ -64,6 +64,9 @@ export async function execute(
 				rejectionReason
 				changeDate
 				person {
+					id
+					firstName
+					secondName
 					name
 					email
 				}
@@ -103,5 +106,5 @@ export async function execute(
 		const changeDate = candidate.changeDate as string | undefined;
 		if (!changeDate) return false;
 		return new Date(changeDate).toISOString().substring(0, 10) === targetDate;
-	});
+	}).map(candidate => ({...candidate, daysAgo}));
 }
