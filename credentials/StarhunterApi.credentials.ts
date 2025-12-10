@@ -8,7 +8,7 @@ import type {
 export class StarhunterApi implements ICredentialType {
 	name = 'starhunterApi';
 	displayName = 'Starhunter API';
-	documentationUrl = 'https://your-instance.starhunter.software/Api/docs';
+	documentationUrl = 'https://starhunter.freshdesk.com/en/support/solutions/articles/22000293488-starhunter-n8n-node-setup-guide';
 	icon = 'file:starhunter.svg' as const;
 
 	properties: INodeProperties[] = [
@@ -18,7 +18,7 @@ export class StarhunterApi implements ICredentialType {
 			type: 'string',
 			default: 'https://your-instance.starhunter.software',
 			required: true,
-			placeholder: 'https://your-instance.starhunter.software',
+			placeholder: 'https://XXX.starhunter.software',
 			description: 'The base URL of your Starhunter instance',
 		},
 		{
