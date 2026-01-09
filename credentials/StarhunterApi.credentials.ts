@@ -30,6 +30,15 @@ export class StarhunterApi implements ICredentialType {
 			default: '',
 			description: 'Your Starhunter API access token',
 		},
+		{
+			displayName: 'Webhook Secret',
+			name: 'webhookSecret',
+			type: 'string',
+			typeOptions: { password: true },
+			required: false,
+			default: '',
+			description: 'HMAC secret for validating webhook signatures (required for webhook trigger)',
+		},
 	];
 
 	authenticate: IAuthenticateGeneric = {

@@ -47,6 +47,112 @@ Follow the [installation guide](https://docs.n8n.io/integrations/community-nodes
 
 - **Create**: Create a new task with optional deadline, assignee, and target entity
 
+## Starhunter Trigger Node
+
+The Starhunter Trigger node receives real-time events from your Starhunter system via webhooks.
+
+### Supported Event Types
+
+- **Application Events**: Triggered when a candidate applies to a project
+- **Status Change Events**: Triggered when a candidate's status changes
+- **Document Upload Events**: Triggered when documents are uploaded
+
+### Setup Instructions
+
+1. **Add Trigger to Workflow**
+   - Search for "Starhunter Trigger" in the trigger nodes list
+   - Add it to your workflow
+   - Select which event types to listen for
+
+2. **Configure Credentials**
+   - Use your existing Starhunter API credentials
+   - Add the webhook secret provided by your Starhunter administrator
+   - The webhook secret is used for HMAC signature validation
+
+3. **Copy Webhook URL**
+   - The trigger node displays a unique webhook URL
+   - Copy this URL
+
+4. **Configure in Starhunter**
+   - Contact your Starhunter administrator
+   - Provide the webhook URL
+   - Ensure HMAC signing is enabled with your webhook secret
+
+### Event Payload Structure
+
+#### Application Event
+```json
+{
+  "eventType": "application",
+  "timestamp": "2025-12-18T14:30:00Z",
+  "candidate": {
+    "id": "12345",
+    "name": "Doe",
+    "firstName": "John",
+    "email": "john.doe@example.com",
+    "phone": "+49123456789",
+    "birthDate": "1990-05-15"
+  },
+  "project": {
+    "id": "67890",
+    "name": "Software Developer Position"
+  },
+  "applicationDate": "2025-12-18T14:30:00Z"
+}
+```
+
+#### Status Change Event
+```json
+{
+  "eventType": "statusChange",
+  "timestamp": "2025-12-18T15:00:00Z",
+  "candidate": {
+    "id": "12345",
+    "name": "Doe",
+    "firstName": "John"
+  },
+  "project": {
+    "id": "67890",
+    "name": "Software Developer Position"
+  },
+  "oldStatus": "applied",
+  "newStatus": "interview_scheduled",
+  "changedBy": "hiring.manager@company.com"
+}
+```
+
+#### Document Upload Event
+```json
+{
+  "eventType": "documentUpload",
+  "timestamp": "2025-12-18T15:30:00Z",
+  "candidate": {
+    "id": "12345",
+    "name": "Doe",
+    "firstName": "John"
+  },
+  "project": {
+    "id": "67890",
+    "name": "Software Developer Position"
+  },
+  "documentType": "resume",
+  "fileName": "John_Doe_Resume.pdf"
+}
+```
+
+File attachments are available in the `binary` property of the workflow data.
+
+### Security: HMAC Signature Validation
+
+The trigger validates webhook authenticity using HMAC-SHA256 signatures:
+
+1. Starhunter signs the webhook payload with your shared secret
+2. The signature is sent in the `X-Starhunter-Signature` header
+3. The trigger validates the signature before processing
+4. Invalid signatures are rejected with an error
+
+**For Starhunter Administrators**: When configuring webhooks, enable HMAC signing and use the same secret that n8n users configure in their credentials.
+
 ## Credentials
 
 To use this node, you need to authenticate with your Starhunter instance using an API access token.
@@ -108,6 +214,31 @@ Monitor candidates who changed status a specific number of days ago for follow-u
    - Operation: Get by Status Change Date
    - Status: Your target status (e.g., "Ident")
    - Days Ago: Number of days to look back
+
+### Example: New application notification (Webhook Trigger)
+
+Sends an email notification when a candidate applies:
+
+1. **Starhunter Trigger** - Filter for "Application Events"
+2. **Set** - Format candidate details
+3. **Gmail** - Send email to hiring manager
+
+### Example: Status change automation (Webhook Trigger)
+
+Updates CRM when candidate status changes:
+
+1. **Starhunter Trigger** - Filter for "Status Change Events"
+2. **Switch** - Branch by new status
+3. **HubSpot** / **Salesforce** - Update contact
+
+### Example: Document processing (Webhook Trigger)
+
+Processes uploaded resumes with AI:
+
+1. **Starhunter Trigger** - Filter for "Document Upload Events"
+2. **Extract from File** - Extract resume text
+3. **OpenAI** - Analyze qualifications
+4. **Starhunter** (action node) - Update candidate notes
 
 ## Resources
 
