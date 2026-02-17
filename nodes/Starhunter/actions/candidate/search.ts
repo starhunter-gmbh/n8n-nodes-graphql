@@ -105,6 +105,7 @@ export async function execute(
 				salutation
 				email
 				birthDate
+				availableFrom
 				phone
 				functions
 				address
