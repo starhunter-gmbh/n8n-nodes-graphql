@@ -1,6 +1,7 @@
 import type { IDataObject, IExecuteFunctions, INodeProperties } from 'n8n-workflow';
 
 import { TASK_FIELDS } from '../../transport/fragments';
+import { normalizeDates } from '../../helpers/dates';
 import { compactInput, starhunterGraphqlRequest } from '../../transport/graphql';
 
 export const description: INodeProperties[] = [
@@ -82,12 +83,17 @@ export async function execute(
 ): Promise<IDataObject | null> {
 	const input: IDataObject = {
 		title: context.getNodeParameter('title', itemIndex) as string,
-		...compactInput({
-			description: context.getNodeParameter('taskDescription', itemIndex) as string,
-			deadline: context.getNodeParameter('deadline', itemIndex) as string,
-			assignee: context.getNodeParameter('assignee', itemIndex) as string,
-			target: context.getNodeParameter('target', itemIndex) as string,
-		}),
+		...normalizeDates(
+			context,
+			itemIndex,
+			compactInput({
+				description: context.getNodeParameter('taskDescription', itemIndex) as string,
+				deadline: context.getNodeParameter('deadline', itemIndex) as string,
+				assignee: context.getNodeParameter('assignee', itemIndex) as string,
+				target: context.getNodeParameter('target', itemIndex) as string,
+			}),
+			{ date: ['deadline'] },
+		),
 	};
 
 	const query = /* GraphQL */ `

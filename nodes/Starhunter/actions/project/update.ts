@@ -2,6 +2,7 @@ import type { IDataObject, IExecuteFunctions, INodeProperties } from 'n8n-workfl
 
 import { showFor } from '../../helpers/displayOptions';
 import { PROJECT_FIELDS } from '../../transport/fragments';
+import { normalizeDates } from '../../helpers/dates';
 import { compactInput, starhunterGraphqlRequest } from '../../transport/graphql';
 
 export const description: INodeProperties[] = [
@@ -231,9 +232,23 @@ export async function execute(
 
 	const input: IDataObject = {
 		id: context.getNodeParameter('projectId', itemIndex) as string,
-		...compactInput({
-			...updateFields,
-		}),
+		...normalizeDates(
+			context,
+			itemIndex,
+			compactInput({
+				...updateFields,
+			}),
+			{
+				date: [
+					'closingDate',
+					'endDate',
+					'limitedEmploymentUntil',
+					'startDate',
+					'startDateFrom',
+					'startDateTo',
+				],
+			},
+		),
 	};
 
 	const query = /* GraphQL */ `

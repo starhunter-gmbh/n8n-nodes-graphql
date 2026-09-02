@@ -1,4 +1,10 @@
-import type { IDataObject, IExecuteFunctions, INodeProperties } from 'n8n-workflow';
+import {
+	NodeApiError,
+	type IDataObject,
+	type IExecuteFunctions,
+	type INodeProperties,
+	type JsonObject,
+} from 'n8n-workflow';
 
 import { showFor } from '../../helpers/displayOptions';
 import { splitList, starhunterGraphqlRequest } from '../../transport/graphql';
@@ -72,8 +78,19 @@ export async function execute(
 
 	const data = await starhunterGraphqlRequest(context, baseUrl, query, variables);
 
+	// The mutation answers with a plain boolean: false means nothing was sent.
+	// Without this the node would report success for a mail that never left.
+	if (data.sendContactEmail !== true) {
+		throw new NodeApiError(context.getNode(), data as JsonObject, {
+			message: 'Starhunter did not send the contact email',
+			description:
+				'The API returned false for sendContactEmail. Check that the target has a usable email address, that a mailbox is available to the authenticated user and that the user may send email.',
+			itemIndex,
+		});
+	}
+
 	return {
-		success: data.sendContactEmail ?? false,
+		success: true,
 		targetId,
 		subject,
 	};

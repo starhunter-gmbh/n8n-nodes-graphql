@@ -2,6 +2,7 @@ import type { IDataObject, IExecuteFunctions, INodeProperties } from 'n8n-workfl
 
 import { showFor } from '../../helpers/displayOptions';
 import { PROJECT_FIELDS } from '../../transport/fragments';
+import { normalizeDates } from '../../helpers/dates';
 import { starhunterGraphqlRequest } from '../../transport/graphql';
 
 export const description: INodeProperties[] = [
@@ -58,11 +59,18 @@ export async function execute(
 		}
 	`;
 
-	const data = await starhunterGraphqlRequest(context, baseUrl, query, {
-		projectId,
-		showInPortal,
-		publishingDate: publishingDate || undefined,
-	});
+	const variables = normalizeDates(
+		context,
+		itemIndex,
+		{
+			projectId,
+			showInPortal,
+			publishingDate: publishingDate || undefined,
+		},
+		{ date: ['publishingDate'] },
+	);
+
+	const data = await starhunterGraphqlRequest(context, baseUrl, query, variables);
 
 	return (data.setProjectPortalSettings as IDataObject) ?? null;
 }

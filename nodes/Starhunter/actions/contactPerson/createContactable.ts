@@ -3,6 +3,7 @@ import type { IDataObject, IExecuteFunctions, INodeProperties } from 'n8n-workfl
 import { buildContactDataInput, contactDataProperty } from '../../helpers/contactData';
 import { showFor } from '../../helpers/displayOptions';
 import { PERSON_FIELDS } from '../../transport/fragments';
+import { normalizeDates } from '../../helpers/dates';
 import { starhunterGraphqlRequest } from '../../transport/graphql';
 
 export const description: INodeProperties[] = [
@@ -112,16 +113,21 @@ export async function execute(
 		}
 	`;
 
-	const variables: IDataObject = {
-		firstName: context.getNodeParameter('firstName', itemIndex) as string,
-		lastName: context.getNodeParameter('lastName', itemIndex) as string,
-		salutation: (additionalFields.salutation as string) || undefined,
-		academicTitle: (additionalFields.academicTitle as string) || undefined,
-		email: (additionalFields.email as string) || undefined,
-		phone: (additionalFields.phone as string) || undefined,
-		birthDate: (additionalFields.birthDate as string) || undefined,
-		contactData: buildContactDataInput(context, itemIndex),
-	};
+	const variables: IDataObject = normalizeDates(
+		context,
+		itemIndex,
+		{
+			firstName: context.getNodeParameter('firstName', itemIndex) as string,
+			lastName: context.getNodeParameter('lastName', itemIndex) as string,
+			salutation: (additionalFields.salutation as string) || undefined,
+			academicTitle: (additionalFields.academicTitle as string) || undefined,
+			email: (additionalFields.email as string) || undefined,
+			phone: (additionalFields.phone as string) || undefined,
+			birthDate: (additionalFields.birthDate as string) || undefined,
+			contactData: buildContactDataInput(context, itemIndex),
+		},
+		{ date: ['birthDate'] },
+	);
 
 	const data = await starhunterGraphqlRequest(context, baseUrl, query, variables);
 

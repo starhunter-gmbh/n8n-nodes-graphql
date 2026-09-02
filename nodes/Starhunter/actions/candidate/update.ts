@@ -3,6 +3,7 @@ import type { IDataObject, IExecuteFunctions, INodeProperties } from 'n8n-workfl
 import { buildContactDataInput, contactDataProperty } from '../../helpers/contactData';
 import { showFor } from '../../helpers/displayOptions';
 import { CANDIDATE_FIELDS } from '../../transport/fragments';
+import { normalizeDates } from '../../helpers/dates';
 import { compactInput, starhunterGraphqlRequest } from '../../transport/graphql';
 
 export const description: INodeProperties[] = [
@@ -253,10 +254,15 @@ export async function execute(
 
 	const input: IDataObject = {
 		id: context.getNodeParameter('candidateId', itemIndex) as string,
-		...compactInput({
-			...updateFields,
-			contactData: buildContactDataInput(context, itemIndex),
-		}),
+		...normalizeDates(
+			context,
+			itemIndex,
+			compactInput({
+				...updateFields,
+				contactData: buildContactDataInput(context, itemIndex),
+			}),
+			{ date: ['availabilityDate', 'availableFrom', 'birthdate', 'optinValidUntilDate'] },
+		),
 	};
 
 	const query = /* GraphQL */ `

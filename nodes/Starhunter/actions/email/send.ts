@@ -1,4 +1,10 @@
-import type { IDataObject, IExecuteFunctions, INodeProperties } from 'n8n-workflow';
+import {
+	NodeApiError,
+	type IDataObject,
+	type IExecuteFunctions,
+	type INodeProperties,
+	type JsonObject,
+} from 'n8n-workflow';
 
 import { showFor } from '../../helpers/displayOptions';
 import { splitList, starhunterGraphqlRequest } from '../../transport/graphql';
@@ -169,6 +175,18 @@ export async function execute(
 	};
 
 	const data = await starhunterGraphqlRequest(context, baseUrl, query, variables);
+	const result = (data.sendEmail as IDataObject) ?? null;
 
-	return (data.sendEmail as IDataObject) ?? null;
+	// `queued: false` means the API accepted the request but did not hand the
+	// mail to a mailbox, which must not read as a successful send.
+	if (result?.queued === false) {
+		throw new NodeApiError(context.getNode(), data as JsonObject, {
+			message: `Starhunter did not queue the email${result.status ? `: ${String(result.status)}` : ''}`,
+			description:
+				'The API returned queued=false. Check the sender type, the selected mailbox and whether the authenticated user may send email.',
+			itemIndex,
+		});
+	}
+
+	return result;
 }
