@@ -1,7 +1,9 @@
 import {
 	NodeConnectionTypes,
 	type IExecuteFunctions,
+	type ILoadOptionsFunctions,
 	type INodeExecutionData,
+	type INodePropertyOptions,
 	type INodeType,
 	type INodeTypeDescription,
 } from 'n8n-workflow';
@@ -14,6 +16,11 @@ import * as project from './actions/project';
 import * as projectCandidate from './actions/projectCandidate';
 import * as task from './actions/task';
 import { executeOperation, operationDescriptions } from './actions/router';
+import {
+	getCandidateStatuses,
+	getPresentationStatuses,
+	getProjectStatuses,
+} from './methods/loadOptions';
 
 export class Starhunter implements INodeType {
 	description: INodeTypeDescription = {
@@ -610,6 +617,17 @@ export class Starhunter implements INodeType {
 			...task.create.description,
 			...operationDescriptions,
 		],
+	};
+
+	methods = {
+		loadOptions: {
+			getCandidateStatuses,
+			getPresentationStatuses,
+			getProjectStatuses,
+		} as Record<
+			string,
+			(this: ILoadOptionsFunctions) => Promise<INodePropertyOptions[]>
+		>,
 	};
 
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {

@@ -16,11 +16,14 @@ export const description: INodeProperties[] = [
 	{
 		displayName: 'Status',
 		name: 'status',
-		type: 'string',
+		type: 'options',
+		typeOptions: {
+			loadOptionsMethod: 'getPresentationStatuses',
+		},
 		default: '',
 		required: true,
 		description:
-			'New status. The API expects one of the customer-specific enum values of the presentation status attribute.',
+			'New status. The values are read from the connected instance, whose presentation status options are customer-specific. Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.',
 		displayOptions: showFor('presentation', 'setStatus'),
 	},
 	{

@@ -1,10 +1,7 @@
-import {
-	NodeApiError,
-	type IDataObject,
-	type IExecuteFunctions,
-	type IHttpRequestOptions,
-	type INodeProperties,
-} from 'n8n-workflow';
+import type { IDataObject, IExecuteFunctions, INodeProperties } from 'n8n-workflow';
+
+import { TASK_FIELDS } from '../../transport/fragments';
+import { compactInput, starhunterGraphqlRequest } from '../../transport/graphql';
 
 export const description: INodeProperties[] = [
 	{
@@ -83,66 +80,25 @@ export async function execute(
 	itemIndex: number,
 	baseUrl: string,
 ): Promise<IDataObject | null> {
-	const title = context.getNodeParameter('title', itemIndex) as string;
-	const taskDescription = context.getNodeParameter('taskDescription', itemIndex) as string;
-	const deadline = context.getNodeParameter('deadline', itemIndex) as string;
-	const assignee = context.getNodeParameter('assignee', itemIndex) as string;
-	const target = context.getNodeParameter('target', itemIndex) as string;
+	const input: IDataObject = {
+		title: context.getNodeParameter('title', itemIndex) as string,
+		...compactInput({
+			description: context.getNodeParameter('taskDescription', itemIndex) as string,
+			deadline: context.getNodeParameter('deadline', itemIndex) as string,
+			assignee: context.getNodeParameter('assignee', itemIndex) as string,
+			target: context.getNodeParameter('target', itemIndex) as string,
+		}),
+	};
 
 	const query = /* GraphQL */ `
-		mutation CreateTask(
-			$title: String!
-			$description: String
-			$deadline: Date
-			$assignee: Id
-			$target: Id
-		) {
-			createTask(
-				title: $title
-				description: $description
-				deadline: $deadline
-				assignee: $assignee
-				target: $target
-			) {
-				id
-				title
-				description
-				deadline
-				assignee
+		mutation TaskCreate($input: TaskCreateInput!) {
+			taskCreate(input: $input) {
+				${TASK_FIELDS}
 			}
 		}
 	`;
 
-	const variables: Record<string, string | undefined> = {
-		title,
-		description: taskDescription || undefined,
-		deadline: deadline || undefined,
-		assignee: assignee || undefined,
-		target: target || undefined,
-	};
+	const data = await starhunterGraphqlRequest(context, baseUrl, query, { input });
 
-	const requestOptions: IHttpRequestOptions = {
-		method: 'POST',
-		url: baseUrl,
-		body: { query, variables },
-		headers: {
-			'Content-Type': 'application/json',
-			Accept: 'application/json',
-		},
-		json: true,
-	};
-
-	const response = await context.helpers.httpRequestWithAuthentication.call(
-		context,
-		'starhunterApi',
-		requestOptions,
-	);
-
-	if (response.errors?.length) {
-		throw new NodeApiError(context.getNode(), response, {
-			message: response.errors.map((e: { message: string }) => e.message).join(', '),
-		});
-	}
-
-	return response.data?.createTask || null;
+	return (data.taskCreate as IDataObject) ?? null;
 }

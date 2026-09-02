@@ -217,10 +217,13 @@ export const description: INodeProperties[] = [
 			{
 				displayName: 'Status',
 				name: 'status',
-				type: 'string',
+				type: 'options',
+				typeOptions: {
+					loadOptionsMethod: 'getCandidateStatuses',
+				},
 				default: '',
 				description:
-					'Candidate status. The API expects one of the customer-specific enum values of the candidate status attribute.',
+					'Candidate status. The values are read from the connected instance, whose candidate status options are customer-specific. Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.',
 			},
 			{
 				displayName: 'Website',

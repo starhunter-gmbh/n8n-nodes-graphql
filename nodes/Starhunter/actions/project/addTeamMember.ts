@@ -26,10 +26,22 @@ export const description: INodeProperties[] = [
 	{
 		displayName: 'Role',
 		name: 'role',
-		type: 'string',
-		default: '',
+		type: 'options',
+		options: [
+			{
+				name: 'Consultant',
+				value: 'consultant',
+				description: 'Links the employee as a consultant of the project',
+			},
+			{
+				name: 'Stakeholder',
+				value: 'stakeholder',
+				description: 'Links the person as a stakeholder of the project',
+			},
+		],
+		default: 'consultant',
 		required: true,
-		description: 'Role of the team member in the project, e.g. Berater or Researcher',
+		description: 'Role of the team member in the project. The API accepts these two roles only.',
 		displayOptions: showFor('project', 'addTeamMember'),
 	},
 ];
